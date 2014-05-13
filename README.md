@@ -93,7 +93,7 @@ Enrique López Mañas - <eenriquelopez@gmail.com>
   <img alt="Follow me on LinkedIn"
        src="https://raw.github.com/kikoso/android-stackblur/master/art/linkedin.png" />
 
-[1]: https://github.com/kikoso/AndTinder/tree/master/StackBlur
-[2]: https://github.com/kikoso/AndTinder/tree/master/StackBlurDemo
+[1]: https://github.com/kikoso/AndTinder/tree/master/AndTinder
+[2]: https://github.com/kikoso/AndTinder/tree/master/AndTinderDemo
 [3]: https://raw.github.com/kikoso/AndTinder/master/art/captura1.png
 [4]: https://raw.github.com/kikoso/AndTinder/master/art/captura2.png

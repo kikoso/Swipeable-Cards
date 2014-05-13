@@ -7,6 +7,9 @@ The library is compatible for Android versions 3.0 (API Level 11) and upwards.
 
 A [library][1] and a [sample application][2] are provided with the code.
 
+![Example Image][3]
+![Example Image][4]
+
 
 Usage
 --------------------
@@ -92,3 +95,5 @@ Enrique López Mañas - <eenriquelopez@gmail.com>
 
 [1]: https://github.com/kikoso/AndTinder/tree/master/StackBlur
 [2]: https://github.com/kikoso/AndTinder/tree/master/StackBlurDemo
+[3]: https://raw.github.com/kikoso/AndTinder/master/art/captura1.png
+[4]: https://raw.github.com/kikoso/AndTinder/master/art/captura2.png

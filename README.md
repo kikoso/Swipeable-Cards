@@ -1,7 +1,7 @@
-AndTinder: Tinder card library for Android
+Swipeable cards for Android: Tinder card library for Android
 =================
 
-AndTinder is a native library for Android that provide a Tinder card like effect. A card can be constructed using an image and displayed with animation effects, dismiss-to-like and dismiss-to-unlike, and use different sorting mechanisms.
+Swipeable cards is a native library for Android that provide a Tinder card like effect. A card can be constructed using an image and displayed with animation effects, dismiss-to-like and dismiss-to-unlike, and use different sorting mechanisms.
 
 The library is compatible for Android versions 3.0 (API Level 11) and upwards.
 

@@ -48,6 +48,8 @@ public class CardView extends ViewGroup {
 	private int screenCenter;
 	
 	private Button buttonLike, buttonDislike;
+    private LinearLayout informationContainerLayout;
+    private LinearLayout imageContainerLayout;
 
     private OnCardDimissedDelegate mOnCardDimissedDelegate = null;
 
@@ -71,8 +73,8 @@ public class CardView extends ViewGroup {
 		
 		ImageView cardImage = (ImageView) findViewById(R.id.tc_image);
 		
-		LinearLayout imageContainerLayout = (LinearLayout) findViewById(R.id.image_container);
-		LinearLayout informationContainerLayout = (LinearLayout) findViewById(R.id.information_container);
+		imageContainerLayout = (LinearLayout) findViewById(R.id.image_container);
+		informationContainerLayout = (LinearLayout) findViewById(R.id.information_container);
 
 		setLayoutParams(new LayoutParams((getScreenSize().x - 80), getScreenSize().y / 2));
 		
@@ -301,5 +303,9 @@ public class CardView extends ViewGroup {
 
     public CardModel getCardModel() {
         return this.cardModel;
+    }
+
+    public void setVisibilityBottomMenu(int visibilityBottomMenu) {
+        informationContainerLayout.setVisibility(visibilityBottomMenu);
     }
 }

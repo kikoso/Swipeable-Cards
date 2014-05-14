@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 
 import com.andtinder.model.CardModel;
@@ -53,6 +54,10 @@ public class MainActivity extends Activity {
          * We need first to create our cards. The constructor needs to know which image will assign to the card
          */
 		CardView card1 = new CardView(mCardContainer,new CardModel(R.drawable.picture1));
+        /**
+         * You can set the visibility of the bottom menu
+         */
+        card1.setVisibilityBottomMenu(View.INVISIBLE);
         /**
          * Afterwards, we need to add the car to the Card Container
          */

@@ -18,6 +18,8 @@
 package com.andtinder.demo;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -71,7 +73,12 @@ public class MainActivity extends Activity {
             }
         });
 		mCardContainer.addView(card2);
+
 		CardView card3 = new CardView(mCardContainer,new CardModel(R.drawable.picture3));
+        /**
+         * We can set an Intent that will be trif
+         */
+        card3.getCardModel().setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kikoso/Swipeable-Cards")));
 		mCardContainer.addView(card3);
 
 	}

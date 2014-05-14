@@ -9,7 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,7 +19,6 @@ import com.andtinder.Utils;
 import com.andtinder.model.CardModel;
 import com.andtinder.model.Likes.Like;
 import com.andtinder.model.Orientations.Orientation;
-
 
 public class CardView extends ViewGroup {
 	/**
@@ -43,7 +41,8 @@ public class CardView extends ViewGroup {
 	 * mAlphaValue represents the amount of transparency the image will have
 	 */
 	private float mAlphaValue = 0;
-	
+
+    private float rotation;
 	private int lastX = 0, lastY = 0;
 	private int xCoord, yCoord;
 	private int screenCenter;
@@ -74,7 +73,7 @@ public class CardView extends ViewGroup {
 		
 		LinearLayout imageContainerLayout = (LinearLayout) findViewById(R.id.image_container);
 		LinearLayout informationContainerLayout = (LinearLayout) findViewById(R.id.information_container);
-		
+
 		setLayoutParams(new LayoutParams((getScreenSize().x - 80), getScreenSize().y / 2));
 		
 		setX(40);
@@ -83,20 +82,21 @@ public class CardView extends ViewGroup {
 
 		if (((CardContainer)parentView).getOrientation() == Orientation.Disordered ) {
 			int rotationGradient = parentView.getChildCount() % 5;
-			if (rotationGradient == 0) { 
-				setRotation(-1); 
-		    } else if (rotationGradient == 1) { 
-		    	setRotation(-5);
-			} else if (rotationGradient == 2) { 
-				setRotation(3);
-			} else if (rotationGradient == 3) { 
-				setRotation(7);
-			} else if (rotationGradient == 4) { 
-				setRotation(-2);
-			} else if (rotationGradient == 5) { 
-				setRotation(5);
-			}
-		}
+			if (rotationGradient == 0) {
+                rotation = -1;
+		    } else if (rotationGradient == 1) {
+                rotation = -5;
+            } else if (rotationGradient == 2) {
+                rotation = -3;
+            } else if (rotationGradient == 3) {
+                rotation = 7;
+            } else if (rotationGradient == 4) {
+                rotation = -2;
+            } else if (rotationGradient == 5) {
+                rotation = 5;
+            }
+            setRotation(rotation);
+        }
 		
 		buttonLike = new Button(getContext());
 		buttonLike.setLayoutParams(new LayoutParams(100, 50));
@@ -116,13 +116,13 @@ public class CardView extends ViewGroup {
 
 		informationContainerLayout.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				if ( cardModel.getIntent() != null ) {
-					getContext().startActivity(cardModel.getIntent());
-				}
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                if (cardModel.getIntent() != null) {
+                    getContext().startActivity(cardModel.getIntent());
+                }
+            }
+        });
 
 		imageContainerLayout.setOnTouchListener(new OnTouchListener() {
 
@@ -234,15 +234,7 @@ public class CardView extends ViewGroup {
 	}
 	
 	public void translateCardToCenter() {
-		 AnimationSet animSet = new AnimationSet(true);
-		 /**
-        RotateAnimation ranim = new RotateAnimation( 0f, -getRotation(), Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f); 
-        ranim.setDuration(400);
-        ranim.setInterpolator(new DecelerateInterpolator());
-
-        animSet.addAnimation(ranim);
-		  */
-        TranslateAnimation anim = new TranslateAnimation(0,
+	     TranslateAnimation anim = new TranslateAnimation(0,
 				-getX(), 0, -getY());
 		anim.setDuration(600);
 		anim.setAnimationListener(new TranslateAnimation.AnimationListener() {
@@ -259,11 +251,10 @@ public class CardView extends ViewGroup {
 			public void onAnimationEnd(Animation animation) {
 				setX(0);
 				setY(0);
-			    clearAnimation();
+                clearAnimation();
 			}
 		});
-
-		startAnimation(anim);
+       	startAnimation(anim);
 	}
 	
 	public void temporalMovementToTheRight() {
@@ -306,5 +297,9 @@ public class CardView extends ViewGroup {
 
     private CardView getInstance() {
         return this;
+    }
+
+    public CardModel getCardModel() {
+        return this.cardModel;
     }
 }

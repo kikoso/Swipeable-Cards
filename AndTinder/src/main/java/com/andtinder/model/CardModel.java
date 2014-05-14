@@ -36,6 +36,5 @@ public class CardModel {
 
     public CardModel(int cardImageResource) {
         this.cardImageResource = cardImageResource;
-        this.intent = intent;
     }
 }

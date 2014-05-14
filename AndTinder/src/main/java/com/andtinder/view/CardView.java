@@ -259,12 +259,11 @@ public class CardView extends ViewGroup {
 			public void onAnimationEnd(Animation animation) {
 				setX(0);
 				setY(0);
-				setRotation(0);
-				clearAnimation();
+			    clearAnimation();
 			}
 		});
-		animSet.addAnimation(anim);
-		startAnimation(animSet);
+
+		startAnimation(anim);
 	}
 	
 	public void temporalMovementToTheRight() {

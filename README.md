@@ -55,6 +55,10 @@ Additionally, you can set up a Delegate to be notified when the image is being l
             }
         });
 
+You can also add an Intent that will be triggered when the bottom part is being pressed:
+
+     card.getCardModel().setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kikoso/Swipeable-Cards")));
+
 Finally, add the cards to the container:
 
     mCardContainer.addView(card);

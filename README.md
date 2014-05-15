@@ -80,10 +80,28 @@ If you want to colaborate with the project or have any idea to be implemented fe
 
 Also, if you have used AndTinder on your app and you let me know, I can link it from here :)
 
-Developed By
+Contact
 --------------------
 
 Enrique López Mañas - <eenriquelopez@gmail.com>
+
+License
+-------
+
+    Copyright 2014 Enrique López Mañas
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
 
 <a href="https://twitter.com/eenriquelopez">
   <img alt="Follow me on Twitter"

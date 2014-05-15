@@ -84,6 +84,7 @@ public class MainActivity extends Activity {
          * We can set an Intent that will be trif
          */
         card3.getCardModel().setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kikoso/Swipeable-Cards")));
+        card3.setText("This is an example text");
 		mCardContainer.addView(card3);
 
 	}

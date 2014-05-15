@@ -3,6 +3,7 @@ package com.andtinder.view;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,6 +14,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.andtinder.R;
 import com.andtinder.Utils;
@@ -51,6 +53,11 @@ public class CardView extends ViewGroup {
     private LinearLayout informationContainerLayout;
     private LinearLayout imageContainerLayout;
 
+    private TextView firstTextView, secondTextView;
+    private ImageView cardImage, firstImageView, secondImageView;
+
+    private TextView mTextViewInformationText;
+
     private OnCardDimissedDelegate mOnCardDimissedDelegate = null;
 
     public interface OnCardDimissedDelegate {
@@ -70,14 +77,11 @@ public class CardView extends ViewGroup {
 
 		LayoutInflater inflate = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.card_layout, this, true);
-		
-		ImageView cardImage = (ImageView) findViewById(R.id.tc_image);
-		
-		imageContainerLayout = (LinearLayout) findViewById(R.id.image_container);
-		informationContainerLayout = (LinearLayout) findViewById(R.id.information_container);
+
+        initGUI();
 
 		setLayoutParams(new LayoutParams((getScreenSize().x - 80), getScreenSize().y / 2));
-		
+
 		setX(40);
 		setY(40);
 		cardImage.setBackgroundResource(cardModel.getCardImageResource());
@@ -241,21 +245,21 @@ public class CardView extends ViewGroup {
 		anim.setDuration(600);
 		anim.setAnimationListener(new TranslateAnimation.AnimationListener() {
 
-			@Override
-			public void onAnimationStart(Animation animation) {
-			}
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
 
-			@Override
-			public void onAnimationRepeat(Animation animation) {
-			}
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
 
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				setX(0);
-				setY(0);
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                setX(0);
+                setY(0);
                 clearAnimation();
-			}
-		});
+            }
+        });
        	startAnimation(anim);
 	}
 	
@@ -307,5 +311,58 @@ public class CardView extends ViewGroup {
 
     public void setVisibilityBottomMenu(int visibilityBottomMenu) {
         informationContainerLayout.setVisibility(visibilityBottomMenu);
+    }
+
+    /**
+     * Changes the text at the bottom of the card
+     * @param text The new string
+     */
+    public void setText(String text) {
+        mTextViewInformationText.setText(text);
+    }
+
+    /**
+     * Gets the text of the card
+     */
+    public String getText() {
+        return mTextViewInformationText.getText().toString();
+    }
+
+    public void setFirstText(String text) {
+        firstTextView.setText(text);
+    }
+
+    public String getFirstText() {
+        return firstTextView.getText().toString();
+    }
+
+    public void setSecondText(String text) {
+        secondTextView.setText(text);
+    }
+
+    public String getSecondText() {
+        return secondTextView.getText().toString();
+    }
+
+    public void setFirstImageView(Drawable image) {
+        firstImageView.setImageDrawable(image);
+    }
+
+    public void setSecondImageView(Drawable image) {
+        secondImageView.setImageDrawable(image);
+    }
+
+    private void initGUI() {
+        cardImage = (ImageView) findViewById(R.id.tc_image);
+
+        imageContainerLayout = (LinearLayout) findViewById(R.id.image_container);
+        informationContainerLayout = (LinearLayout) findViewById(R.id.information_container);
+        mTextViewInformationText = (TextView) findViewById(R.id.textViewInformationText);
+
+        firstTextView   = (TextView) findViewById(R.id.firstTextView);
+        secondTextView  = (TextView) findViewById(R.id.secondTextView);
+
+        firstImageView  = (ImageView) findViewById(R.id.firstImageView);
+        secondImageView = (ImageView) findViewById(R.id.secondImageView);
     }
 }

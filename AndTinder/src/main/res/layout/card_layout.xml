@@ -46,8 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:gravity="left"
-                android:text="@string/hello_world" />
+                android:gravity="left"/>
         </RelativeLayout>
 
         <View
@@ -57,7 +56,7 @@
             android:background="#D0D0CE" />
 
         <LinearLayout
-            android:id="@+id/layoutContainerFriends"
+            android:id="@+id/firstLayoutContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -65,17 +64,16 @@
             android:padding="5dp" >
 
             <ImageView
-                android:id="@+id/imageViewFriends"
+                android:id="@+id/firstImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="5dp"
                 android:src="@drawable/people" />
 
             <TextView
-                android:id="@+id/textViewFriends"
+                android:id="@+id/firstTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -86,7 +84,7 @@
             android:background="#D0D0CE" />
 
         <LinearLayout
-            android:id="@+id/layoutContainerPictures"
+            android:id="@+id/secondLayoutContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -94,7 +92,7 @@
             android:padding="5dp" >
 
             <ImageView
-                android:id="@+id/imageViewPictures"
+                android:id="@+id/secondImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -102,11 +100,10 @@
                 android:src="@drawable/camera" />
 
             <TextView
-                android:id="@+id/textViewLikes"
+                android:id="@+id/secondTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
-                android:text="4"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>

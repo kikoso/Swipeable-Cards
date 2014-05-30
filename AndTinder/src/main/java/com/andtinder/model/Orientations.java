@@ -19,21 +19,14 @@ package com.andtinder.model;
 
 public class Orientations {
 	 public enum Orientation {
-	        Ordered(0), Disordered(1);
+	        Ordered, Disordered;
 
-	        public final int value;
-
-	        private Orientation(int value) {
-	            this.value = value;
-	        }
-
-	        public static Orientation fromValue(int value) {
-	            for (Orientation style : Orientation.values()) {
-	                if (style.value == value) {
-	                    return style;
-	                }
-	            }
-	            return null;
+	        public static Orientation fromIndex(int index) {
+		        Orientation[] values = Orientation.values();
+		        if(index < 0 || index >= values.length) {
+			        throw new IndexOutOfBoundsException();
+		        }
+		        return values[index];
 	        }
 	    }
 }

@@ -18,23 +18,101 @@
 package com.andtinder.model;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 
-import lombok.Data;
-
-@Data
 public class CardModel {
-	
-	private int cardImageResource;
-	private int cardLikeImageResource;
-	private int cardDislikeImageResource;
-	private Intent intent;
-	
+
+	private String   title;
+	private String   description;
+	private Drawable cardImageDrawable;
+	private Drawable cardLikeImageDrawable;
+	private Drawable cardDislikeImageDrawable;
+
+    private OnCardDimissedListener mOnCardDimissedListener = null;
+
+    private OnClickListener mOnClickListener = null;
+
+    public interface OnCardDimissedListener {
+        void onLike();
+        void onDislike();
+    }
+
+    public interface OnClickListener {
+        void OnClickListener();
+    }
+
 	public CardModel() {
-		this.cardImageResource = -1;
-		intent = null;
+		this(null, null, (Drawable)null);
 	}
 
-    public CardModel(int cardImageResource) {
-        this.cardImageResource = cardImageResource;
+	public CardModel(String title, String description, Drawable cardImage) {
+		this.title = title;
+		this.description = description;
+		this.cardImageDrawable = cardImage;
+	}
+
+	public CardModel(String title, String description, Bitmap cardImage) {
+		this.title = title;
+		this.description = description;
+		this.cardImageDrawable = new BitmapDrawable(null, cardImage);
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Drawable getCardImageDrawable() {
+		return cardImageDrawable;
+	}
+
+	public void setCardImageDrawable(Drawable cardImageDrawable) {
+		this.cardImageDrawable = cardImageDrawable;
+	}
+
+	public Drawable getCardLikeImageDrawable() {
+		return cardLikeImageDrawable;
+	}
+
+	public void setCardLikeImageDrawable(Drawable cardLikeImageDrawable) {
+		this.cardLikeImageDrawable = cardLikeImageDrawable;
+	}
+
+	public Drawable getCardDislikeImageDrawable() {
+		return cardDislikeImageDrawable;
+	}
+
+	public void setCardDislikeImageDrawable(Drawable cardDislikeImageDrawable) {
+		this.cardDislikeImageDrawable = cardDislikeImageDrawable;
+	}
+
+    public void setOnCardDimissedListener( OnCardDimissedListener listener ) {
+        this.mOnCardDimissedListener = listener;
+    }
+
+    public OnCardDimissedListener getOnCardDimissedListener() {
+       return this.mOnCardDimissedListener;
+    }
+
+
+    public void setOnClickListener( OnClickListener listener ) {
+        this.mOnClickListener = listener;
+    }
+
+    public OnClickListener getOnClickListener() {
+        return this.mOnClickListener;
     }
 }

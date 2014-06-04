@@ -23,8 +23,6 @@ public class Utils {
 		int intermediateValue = max - min;
 		value -= intermediateValue;
 		float var = Math.abs((float)value/(float)intermediateValue);
-		System.out.println(String.valueOf(value) + ":"+String.valueOf(intermediateValue));
-		System.out.println(var);
 		return Math.abs((float)value/(float)intermediateValue);
 	}
 }

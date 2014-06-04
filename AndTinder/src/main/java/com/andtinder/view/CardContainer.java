@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 
 import com.andtinder.R;
+import com.andtinder.model.CardModel;
 import com.andtinder.model.Orientations.Orientation;
 
 import java.util.Random;
@@ -33,6 +34,7 @@ public class CardContainer extends AdapterView<ListAdapter> {
 	public static final int INVALID_POINTER_ID = -1;
 	private int mActivePointerId = INVALID_POINTER_ID;
 	private static final double DISORDERED_MAX_ROTATION_RADIANS = Math.PI / 64;
+    private int mNumberOfCards = -1;
 	private final DataSetObserver mDataSetObserver = new DataSetObserver() {
 		@Override
 		public void onChanged() {
@@ -55,8 +57,8 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
 	//TODO: determine max dynamically based on device speed
 	private int mMaxVisible = 10;
-	private /*final*/ GestureDetector mGestureDetector;
-	private /*final*/ int mFlingSlop;
+	private GestureDetector mGestureDetector;
+	private int mFlingSlop;
 	private Orientation mOrientation;
 	private ListAdapter mListAdapter;
 	private float mLastTouchX;
@@ -70,7 +72,7 @@ public class CardContainer extends AdapterView<ListAdapter> {
 	public CardContainer(Context context) {
 		super(context);
 
-		setOrientation(Orientation.Disordered);
+        setOrientation(Orientation.Disordered);
 		setGravity(Gravity.CENTER);
 		init();
 
@@ -129,7 +131,7 @@ public class CardContainer extends AdapterView<ListAdapter> {
 			mTopCard = getChildAt(getChildCount() - 1);
 			mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
 		}
-
+        mNumberOfCards = getAdapter().getCount();
 		requestLayout();
 	}
 
@@ -193,7 +195,6 @@ public class CardContainer extends AdapterView<ListAdapter> {
 		int requestedHeight = getMeasuredHeight() - getPaddingTop() - getPaddingBottom();
 		int childWidth, childHeight;
 
-		// Scale cards so they fit when rotated
 		if (mOrientation == Orientation.Disordered) {
 			int R1, R2;
 			if (requestedWidth >= requestedHeight) {
@@ -347,6 +348,11 @@ public class CardContainer extends AdapterView<ListAdapter> {
 			case MotionEvent.ACTION_DOWN:
 				mTopCard.getHitRect(childRect);
 
+                CardModel cardModel = (CardModel)getAdapter().getItem(0);
+
+                if (cardModel.getOnClickListener() != null) {
+                   cardModel.getOnClickListener().OnClickListener();
+                }
 				pointerIndex = event.getActionIndex();
 				x = event.getX(pointerIndex);
 				y = event.getY(pointerIndex);
@@ -440,8 +446,18 @@ public class CardContainer extends AdapterView<ListAdapter> {
 				duration = Math.min(500, duration);
 
 				mTopCard = getChildAt(getChildCount() - 2);
+                CardModel cardModel = (CardModel)getAdapter().getItem(0);
+
 				if(mTopCard != null)
 					mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
+
+                if (cardModel.getOnCardDimissedListener() != null) {
+                    if ( targetX > 0 ) {
+                        cardModel.getOnCardDimissedListener().onDislike();
+                    } else {
+                        cardModel.getOnCardDimissedListener().onLike();
+                    }
+                }
 
 				topCard.animate()
 						.setDuration(duration)

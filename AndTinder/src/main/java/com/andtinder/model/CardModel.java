@@ -24,12 +24,24 @@ import android.graphics.drawable.Drawable;
 
 public class CardModel {
 
-	private String title;
-	private String description;
+	private String   title;
+	private String   description;
 	private Drawable cardImageDrawable;
 	private Drawable cardLikeImageDrawable;
 	private Drawable cardDislikeImageDrawable;
-	private Intent intent;
+
+    private OnCardDimissedListener mOnCardDimissedListener = null;
+
+    private OnClickListener mOnClickListener = null;
+
+    public interface OnCardDimissedListener {
+        void onLike();
+        void onDislike();
+    }
+
+    public interface OnClickListener {
+        void OnClickListener();
+    }
 
 	public CardModel() {
 		this(null, null, (Drawable)null);
@@ -87,11 +99,20 @@ public class CardModel {
 		this.cardDislikeImageDrawable = cardDislikeImageDrawable;
 	}
 
-	public Intent getIntent() {
-		return intent;
-	}
+    public void setOnCardDimissedListener( OnCardDimissedListener listener ) {
+        this.mOnCardDimissedListener = listener;
+    }
 
-	public void setIntent(Intent intent) {
-		this.intent = intent;
-	}
+    public OnCardDimissedListener getOnCardDimissedListener() {
+       return this.mOnCardDimissedListener;
+    }
+
+
+    public void setOnClickListener( OnClickListener listener ) {
+        this.mOnClickListener = listener;
+    }
+
+    public OnClickListener getOnClickListener() {
+        return this.mOnClickListener;
+    }
 }

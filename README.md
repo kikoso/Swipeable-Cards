@@ -127,4 +127,4 @@ License
 [2]: https://github.com/kikoso/AndTinder/tree/master/AndTinderDemo
 [3]: https://raw.github.com/kikoso/AndTinder/master/art/captura1.png
 [4]: https://raw.github.com/kikoso/AndTinder/master/art/captura2.png
-[4]: https://github.com/Dr-Emann
+[5]: https://github.com/Dr-Emann

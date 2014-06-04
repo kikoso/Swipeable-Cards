@@ -39,33 +39,41 @@ The card container can sort the cards either ordered or disordered:
      
 Now you need to create your cards. The procedure is quite simple: you just need to create an object CardView and provide the image resource you want to add:
 
-    CardView card = new CardView(mCardContainer,new CardModel(R.drawable.picture1));
+    CardModel card = new CardModel("Title1", "Description goes here", r.getDrawable(R.drawable.picture1);
     
 Additionally, you can set up a Delegate to be notified when the image is being liked or disliked:
      
      card.setOnCardDimissedDelegate(new CardView.OnCardDimissedDelegate() {
             @Override
             public void onLike(CardView cardView) {
-                Log.d("AndTinder", "I liked it");
+                Log.d("Swipeable Card", "I liked it");
             }
 
             @Override
             public void onDislike(CardView cardView) {
-                Log.d("AndTinder", "I did not liked it");
+                Log.d("Swipeable Card", "I did not liked it");
             }
         });
 
-You can also add an Intent that will be triggered when the bottom part is being pressed:
+Or when it is clicked:
 
-     card.getCardModel().setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kikoso/Swipeable-Cards")));
+       card.setOnClickListener(new CardModel.OnClickListener() {
+           @Override
+           public void OnClickListener() {
+               Log.i("Swipeable Cards","I am pressing the card");
+           }
+        });
+        
+Finally, use an adapter to link the cards and the container:
 
-Finally, add the cards to the container:
-
-    mCardContainer.addView(card);
+     SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(this);
+     adapter.add(new CardModel("Title1", "Description goes here", r.getDrawable(R.drawable.picture1)));
+     mCardContainer.setAdapter(adapter);
    
 
 Version history
 --------------------
+*  4.06.2014: Published the version 0.2 with several improvements thanks to [Dr-Emann][5]
 * 13.05.2014: Published the first version 0.1
 
 Next steps
@@ -119,3 +127,4 @@ License
 [2]: https://github.com/kikoso/AndTinder/tree/master/AndTinderDemo
 [3]: https://raw.github.com/kikoso/AndTinder/master/art/captura1.png
 [4]: https://raw.github.com/kikoso/AndTinder/master/art/captura2.png
+[4]: https://github.com/Dr-Emann

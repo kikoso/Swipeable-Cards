@@ -20,6 +20,12 @@ Download the library with git and import it into your project (right now there i
 and in your settings.gradle
 
     include 'AndTinder'
+    
+You can also download it via MavenCentral and Gradle:
+
+    dependencies {
+        compile 'com.github.kikoso:SwipeableCards:1.0-RELEASE'
+    }
 
 When you have included the library in your project, you need to proceeed as follows. First, create a container to store the cards.
 

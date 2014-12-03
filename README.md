@@ -24,7 +24,7 @@ and in your settings.gradle
 You can also download it via MavenCentral and Gradle:
 
     dependencies {
-        compile 'com.github.kikoso:SwipeableCards:1.0-RELEASE'
+        ompile 'com.github.kikoso:SwipeableCards:1.0-RELEASE@aar'
     }
 
 When you have included the library in your project, you need to proceeed as follows. First, create a container to store the cards.

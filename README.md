@@ -15,67 +15,87 @@ Usage
 --------------------
 Download the library with git and import it into your project (right now there is only Gradle support, so you need to import it writing in your build.gradle the following:
 
-     compile project(':AndTinder')
+```groovy
+compile project(':AndTinder')
+```
 
 and in your settings.gradle
 
-    include 'AndTinder'
-    
+```groovy
+include 'AndTinder'
+```
+
 You can also download it via MavenCentral and Gradle:
 
-    dependencies {
-        ompile 'com.github.kikoso:SwipeableCards:1.0-RELEASE@aar'
-    }
+```groovy
+dependencies {
+   compile 'com.github.kikoso:SwipeableCards:1.0-RELEASE@aar'
+}
+```
 
 When you have included the library in your project, you need to proceeed as follows. First, create a container to store the cards.
 
-    <com.andtinder.view.CardContainer xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/layoutview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+```xml
+<com.andtinder.view.CardContainer 
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/layoutview"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent" />
+```
     
 From your Activity, inflate into a CardContainer the container you declared in your XML
     
-    mCardContainer = (CardContainer) findViewById(R.id.layoutview);
+```java
+mCardContainer = (CardContainer) findViewById(R.id.layoutview);
+```
 
 The card container can sort the cards either ordered or disordered:
 
-     mCardContainer.setOrientation(Orientation.Ordered);
-     mCardContainer.setOrientation(Orientation.Disordered);
+```java
+mCardContainer.setOrientation(Orientation.Ordered);
+mCardContainer.setOrientation(Orientation.Disordered);
+```
      
 Now you need to create your cards. The procedure is quite simple: you just need to create an object CardView and provide the image resource you want to add:
 
-    CardModel card = new CardModel("Title1", "Description goes here", r.getDrawable(R.drawable.picture1);
+```java
+CardModel card = new CardModel("Title1", "Description goes here", r.getDrawable(R.drawable.picture1);
+```
     
 Additionally, you can set up a Delegate to be notified when the image is being liked or disliked:
      
-     card.setOnCardDimissedDelegate(new CardView.OnCardDimissedDelegate() {
-            @Override
-            public void onLike(CardView cardView) {
-                Log.d("Swipeable Card", "I liked it");
-            }
+```java
+card.setOnCardDimissedDelegate(new CardView.OnCardDimissedDelegate() {
+     @Override
+     public void onLike(CardView cardView) {
+          Log.d("Swipeable Card", "I liked it");
+     }
 
-            @Override
-            public void onDislike(CardView cardView) {
-                Log.d("Swipeable Card", "I did not liked it");
-            }
-        });
+     @Override
+     public void onDislike(CardView cardView) {
+          Log.d("Swipeable Card", "I did not liked it");
+     }
+});
+```
 
 Or when it is clicked:
 
-       card.setOnClickListener(new CardModel.OnClickListener() {
-           @Override
-           public void OnClickListener() {
-               Log.i("Swipeable Cards","I am pressing the card");
-           }
-        });
-        
+```java
+card.setOnClickListener(new CardModel.OnClickListener() {
+     @Override
+     public void OnClickListener() {
+          Log.i("Swipeable Cards","I am pressing the card");
+     }
+});
+```
+
 Finally, use an adapter to link the cards and the container:
 
-     SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(this);
-     adapter.add(new CardModel("Title1", "Description goes here", r.getDrawable(R.drawable.picture1)));
-     mCardContainer.setAdapter(adapter);
-   
+```java
+SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(this);
+adapter.add(new CardModel("Title1", "Description goes here", r.getDrawable(R.drawable.picture1)));
+mCardContainer.setAdapter(adapter);
+```   
 
 Version history
 --------------------

@@ -17,11 +17,19 @@
 
 package com.andtinder.model;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class CardModel {
+import com.andtinder.R;
+
+public class CardModel implements Cardable {
 
 	private String   title;
 	private String   description;
@@ -113,5 +121,18 @@ public class CardModel {
 
     public OnClickListener getOnClickListener() {
         return this.mOnClickListener;
+    }
+
+    public View getView(Context context, View convertView, ViewGroup parent) {
+        if(convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(context);
+            convertView = inflater.inflate(R.layout.std_card_inner, parent, false);
+            assert convertView != null;
+        }
+
+        ((ImageView) convertView.findViewById(R.id.image)).setImageDrawable(getCardImageDrawable());
+        ((TextView) convertView.findViewById(R.id.title)).setText(getTitle());
+        ((TextView) convertView.findViewById(R.id.description)).setText(getDescription());
+        return convertView;
     }
 }

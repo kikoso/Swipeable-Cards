@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.andtinder.R;
-import com.andtinder.model.CardModel;
+import com.andtinder.model.Cardable;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,16 +19,16 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 	 * performed on the deque should be synchronized on this lock.
 	 */
 	private final Object mLock = new Object();
-	private ArrayList<CardModel> mData;
+	private ArrayList<Cardable> mData;
 
 	public CardStackAdapter(Context context) {
 		mContext = context;
-		mData = new ArrayList<CardModel>();
+		mData = new ArrayList<Cardable>();
 	}
 
-	public CardStackAdapter(Context context, Collection<? extends CardModel> items) {
+	public CardStackAdapter(Context context, Collection<Cardable> items) {
 		mContext = context;
-		mData = new ArrayList<CardModel>(items);
+		mData = new ArrayList<Cardable>(items);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 			} else {
 				innerWrapper = wrapper;
 			}
-			cardView = getCardView(position, getCardModel(position), null, parent);
+			cardView = getCardView(position, getCardable(position), null, parent);
 			innerWrapper.addView(cardView);
 		} else {
 			if (shouldFillCardBackground()) {
@@ -56,7 +56,7 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 				innerWrapper = wrapper;
 			}
 			cardView = innerWrapper.getChildAt(0);
-			convertedCardView = getCardView(position, getCardModel(position), cardView, parent);
+			convertedCardView = getCardView(position, getCardable(position), cardView, parent);
 			if (convertedCardView != cardView) {
 				wrapper.removeView(cardView);
 				wrapper.addView(convertedCardView);
@@ -66,34 +66,34 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 		return wrapper;
 	}
 
-	protected abstract View getCardView(int position, CardModel model, View convertView, ViewGroup parent);
+	protected abstract View getCardView(int position, Cardable cardable, View convertView, ViewGroup parent);
 
 	public boolean shouldFillCardBackground() {
 		return true;
 	}
 
-	public void add(CardModel item) {
+	public void add(Cardable item) {
 		synchronized (mLock) {
 			mData.add(item);
 		}
 		notifyDataSetChanged();
 	}
 
-	public CardModel pop() {
-		CardModel model;
+	public Cardable pop() {
+        Cardable cardable;
 		synchronized (mLock) {
-			model = mData.remove(mData.size() - 1);
+			cardable = mData.remove(mData.size() - 1);
 		}
 		notifyDataSetChanged();
-		return model;
+		return cardable;
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return getCardModel(position);
+		return getCardable(position);
 	}
 
-	public CardModel getCardModel(int position) {
+	public Cardable getCardable(int position) {
 		synchronized (mLock) {
 			return mData.get(mData.size() - 1 - position);
 		}

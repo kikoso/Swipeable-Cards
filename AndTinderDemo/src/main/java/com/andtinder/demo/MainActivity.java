@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
            }
         });
 
-        cardModel.setOnCardDimissedListener(new CardModel.OnCardDimissedListener() {
+        cardModel.setOnCardDismissedListener(new CardModel.OnCardDismissedListener() {
             @Override
             public void onLike() {
                 Log.i("Swipeable Cards","I like the card");

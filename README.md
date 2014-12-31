@@ -47,9 +47,9 @@ Now you need to create your cards. The procedure is quite simple: you just need 
 
     CardModel card = new CardModel("Title1", "Description goes here", r.getDrawable(R.drawable.picture1);
     
-Additionally, you can set up a Delegate to be notified when the image is being liked or disliked:
+Additionally, you can set up a listener to be notified when the image is being liked or disliked:
      
-     card.setOnCardDimissedDelegate(new CardView.OnCardDimissedDelegate() {
+     card.setOnCardDismissedListener(new CardModel.OnCardDismissedListener() {
             @Override
             public void onLike(CardView cardView) {
                 Log.d("Swipeable Card", "I liked it");

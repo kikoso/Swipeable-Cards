@@ -99,6 +99,7 @@ mCardContainer.setAdapter(adapter);
 
 Version history
 --------------------
+*  14.02.2015: Version 0.3: Fixed bugs with the cards locations and updated to the latest build tools
 *  4.06.2014: Published the version 0.2 with several improvements thanks to [Dr-Emann][5]
 * 13.05.2014: Published the first version 0.1
 

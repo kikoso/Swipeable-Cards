@@ -90,7 +90,7 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		return getCardModel(position);
+		return getCardModel(mData.size() - 1 - position);
 	}
 
 	public CardModel getCardModel(int position) {
@@ -106,7 +106,7 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		return getItem(position).hashCode();
+		return getItem(mData.size() - 1 - position).hashCode();
 	}
 
 	public Context getContext() {

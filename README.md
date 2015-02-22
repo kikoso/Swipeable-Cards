@@ -29,7 +29,7 @@ You can also download it via MavenCentral and Gradle:
 
 ```groovy
 dependencies {
-   compile 'com.github.kikoso:SwipeableCards:1.0-RELEASE@aar'
+   compile 'com.github.kikoso:SwipeableCards:1.1-RELEASE@aar'
 }
 ```
 

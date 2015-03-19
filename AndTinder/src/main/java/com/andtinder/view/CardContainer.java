@@ -453,9 +453,9 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
                 if (cardModel.getOnCardDimissedListener() != null) {
                     if ( targetX > 0 ) {
-                        cardModel.getOnCardDimissedListener().onDislike();
-                    } else {
                         cardModel.getOnCardDimissedListener().onLike();
+                    } else {
+                        cardModel.getOnCardDimissedListener().onDislike();
                     }
                 }
 

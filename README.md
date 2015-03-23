@@ -65,14 +65,14 @@ CardModel card = new CardModel("Title1", "Description goes here", r.getDrawable(
 Additionally, you can set up a Delegate to be notified when the image is being liked or disliked:
      
 ```java
-card.setOnCardDimissedDelegate(new CardView.OnCardDimissedDelegate() {
+card.setOnCardDimissedListener(new CardModel.OnCardDismissedListener() {
      @Override
-     public void onLike(CardView cardView) {
+     public void onLike() {
           Log.d("Swipeable Card", "I liked it");
      }
 
      @Override
-     public void onDislike(CardView cardView) {
+     public void onDislike() {
           Log.d("Swipeable Card", "I did not liked it");
      }
 });

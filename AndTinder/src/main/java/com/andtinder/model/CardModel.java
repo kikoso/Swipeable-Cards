@@ -30,11 +30,11 @@ public class CardModel {
 	private Drawable cardLikeImageDrawable;
 	private Drawable cardDislikeImageDrawable;
 
-    private OnCardDimissedListener mOnCardDimissedListener = null;
+    private OnCardDismissedListener mOnCardDismissedListener = null;
 
     private OnClickListener mOnClickListener = null;
 
-    public interface OnCardDimissedListener {
+    public interface OnCardDismissedListener {
         void onLike();
         void onDislike();
     }
@@ -99,12 +99,12 @@ public class CardModel {
 		this.cardDislikeImageDrawable = cardDislikeImageDrawable;
 	}
 
-    public void setOnCardDimissedListener( OnCardDimissedListener listener ) {
-        this.mOnCardDimissedListener = listener;
+    public void setOnCardDismissedListener( OnCardDismissedListener listener ) {
+        this.mOnCardDismissedListener = listener;
     }
 
-    public OnCardDimissedListener getOnCardDimissedListener() {
-       return this.mOnCardDimissedListener;
+    public OnCardDismissedListener getOnCardDismissedListener() {
+       return this.mOnCardDismissedListener;
     }
 
 

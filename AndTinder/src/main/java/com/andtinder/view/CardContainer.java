@@ -476,7 +476,7 @@ public class CardContainer extends AdapterView<ListAdapter> {
                 public void run() {
                     locked = false; // Unlock swipe
                 }
-            }, duration);
+            }, duration + 200);
 
             mTopCard = getChildAt(getChildCount() - 2);
             CardModel cardModel = (CardModel) getAdapter().getItem(0);

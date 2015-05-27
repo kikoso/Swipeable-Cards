@@ -10,6 +10,7 @@ import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Matrix;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -68,6 +69,8 @@ public class CardContainer extends AdapterView<ListAdapter> {
     private int mGravity;
     private int mNextAdapterPosition;
     private boolean mDragging;
+
+    private boolean locked = false;
 
     public CardContainer(Context context) {
         super(context);
@@ -426,61 +429,88 @@ public class CardContainer extends AdapterView<ListAdapter> {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             Log.d("Fling", "Fling with " + velocityX + ", " + velocityY);
-            final View topCard = mTopCard;
+
             float dx = e2.getX() - e1.getX();
             if (Math.abs(dx) > mTouchSlop &&
                     Math.abs(velocityX) > Math.abs(velocityY) &&
                     Math.abs(velocityX) > mFlingSlop * 3) {
-                float targetX = topCard.getX();
-                float targetY = topCard.getY();
-                long duration = 0;
 
-                boundsRect.set(0 - topCard.getWidth() - 100, 0 - topCard.getHeight() - 100, getWidth() + 100, getHeight() + 100);
+                leave(velocityX, velocityY);
 
-                while (boundsRect.contains((int) targetX, (int) targetY)) {
-                    targetX += velocityX / 10;
-                    targetY += velocityY / 10;
-                    duration += 100;
-                }
-
-                duration = Math.min(500, duration);
-
-                mTopCard = getChildAt(getChildCount() - 2);
-                CardModel cardModel = (CardModel)getAdapter().getItem(getChildCount() - 1);
-
-                if(mTopCard != null)
-                    mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
-
-                if (cardModel.getOnCardDimissedListener() != null) {
-                    if ( targetX > 0 ) {
-                        cardModel.getOnCardDimissedListener().onLike();
-                    } else {
-                        cardModel.getOnCardDimissedListener().onDislike();
-                    }
-                }
-
-                topCard.animate()
-                        .setDuration(duration)
-                        .alpha(.75f)
-                        .setInterpolator(new LinearInterpolator())
-                        .x(targetX)
-                        .y(targetY)
-                        .rotation(Math.copySign(45, velocityX))
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                removeViewInLayout(topCard);
-                                ensureFull();
-                            }
-
-                            @Override
-                            public void onAnimationCancel(Animator animation) {
-                                onAnimationEnd(animation);
-                            }
-                        });
                 return true;
             } else
                 return false;
+        }
+    }
+
+    /**
+     * Public function for allow dismiss cards directly from the CardContainer
+     * IE: mCardContainer.leave(-1000, 45);
+     *
+     * @param velocityX
+     * @param velocityY
+     */
+    public void leave(float velocityX, float velocityY) {
+        if (!locked) {
+            locked = true; // Lock swipe until current card is dismissed
+
+            final View topCard = mTopCard;
+
+            float targetX = topCard.getX();
+            float targetY = topCard.getY();
+            long duration = 0;
+
+            boundsRect.set(0 - topCard.getWidth() - 100, 0 - topCard.getHeight() - 100, getWidth() + 100, getHeight() + 100);
+
+            while (boundsRect.contains((int) targetX, (int) targetY)) {
+                targetX += velocityX / 10;
+                targetY += velocityY / 10;
+                duration += 100;
+            }
+
+            duration = Math.min(500, duration);
+
+            final Handler h = new Handler();
+            h.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    locked = false; // Unlock swipe
+                }
+            }, duration);
+
+            mTopCard = getChildAt(getChildCount() - 2);
+            CardModel cardModel = (CardModel) getAdapter().getItem(0);
+
+            if (mTopCard != null)
+                mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
+
+            if (cardModel.getOnCardDimissedListener() != null) {
+                if (targetX < 0) {
+                    cardModel.getOnCardDimissedListener().onDislike();
+                } else {
+                    cardModel.getOnCardDimissedListener().onLike();
+                }
+            }
+
+            topCard.animate()
+                    .setDuration(duration)
+                    .alpha(.75f)
+                    .setInterpolator(new LinearInterpolator())
+                    .x(targetX)
+                    .y(targetY)
+                    .rotation(Math.copySign(45, velocityX))
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            removeViewInLayout(topCard);
+                            ensureFull();
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            onAnimationEnd(animation);
+                        }
+                    });
         }
     }
 }

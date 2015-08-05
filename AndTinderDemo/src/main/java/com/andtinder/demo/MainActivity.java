@@ -86,16 +86,16 @@ public class MainActivity extends Activity {
         });
 
         cardModel.setOnCardDismissedListener(new CardModel.OnCardDismissedListener() {
-			@Override
-			public void onLike() {
-				Log.i("Swipeable Cards", "I like the card");
-			}
+            @Override
+            public void onLike() {
+                Log.i("Swipeable Cards","I like the card");
+            }
 
-			@Override
-			public void onDislike() {
-				Log.i("Swipeable Cards", "I dislike the card");
-			}
-		});
+            @Override
+            public void onDislike() {
+                Log.i("Swipeable Cards","I dislike the card");
+            }
+        });
 
         adapter.add(cardModel);
 

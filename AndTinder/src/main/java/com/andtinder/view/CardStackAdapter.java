@@ -70,7 +70,7 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 
 	protected abstract View getCardView(int position, CardModel model, View convertView, ViewGroup parent);
 
-    public boolean setShouldFillCardBackground(boolean isShouldFillCardBackground) {
+    public void setShouldFillCardBackground(boolean isShouldFillCardBackground) {
         this.mShouldFillCardBackground = isShouldFillCardBackground;
     }
 

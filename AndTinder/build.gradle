@@ -28,7 +28,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            testCoverageEnabled = true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }

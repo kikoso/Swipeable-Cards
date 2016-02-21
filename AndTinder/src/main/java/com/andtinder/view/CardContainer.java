@@ -484,11 +484,11 @@ public class CardContainer extends AdapterView<ListAdapter> {
             if (mTopCard != null)
                 mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
 
-            if (cardModel.getOnCardDimissedListener() != null) {
+            if (cardModel.getOnCardDismissedListener() != null) {
                 if (targetX < 0) {
-                    cardModel.getOnCardDimissedListener().onDislike();
+                    cardModel.getOnCardDismissedListener().onDislike();
                 } else {
-                    cardModel.getOnCardDimissedListener().onLike();
+                    cardModel.getOnCardDismissedListener().onLike();
                 }
             }
 

@@ -28,4 +28,3 @@ task testDebugUnitTestCoverage (type:JacocoReport, dependsOn: "testDebugUnitTest
         html.enabled = true
     }
 }
-

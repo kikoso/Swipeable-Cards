@@ -257,10 +257,13 @@ public class CardContainer extends AdapterView<ListAdapter> {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 mTopCard.getHitRect(childRect);
-
                 pointerIndex = event.getActionIndex();
-                x = event.getX(pointerIndex);
-                y = event.getY(pointerIndex);
+                try {
+                    x = event.getX(pointerIndex);
+                    y = event.getY(pointerIndex);
+                } catch (Exception e){
+                    return false;
+                }
 
                 if (!childRect.contains((int) x, (int) y)) {
                     return false;
@@ -346,7 +349,6 @@ public class CardContainer extends AdapterView<ListAdapter> {
         }
         final int pointerIndex;
         final float x, y;
-        final float dx, dy;
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 mTopCard.getHitRect(childRect);
@@ -357,8 +359,12 @@ public class CardContainer extends AdapterView<ListAdapter> {
                     cardModel.getOnClickListener().OnClickListener();
                 }
                 pointerIndex = event.getActionIndex();
-                x = event.getX(pointerIndex);
-                y = event.getY(pointerIndex);
+                try {
+                    x = event.getX(pointerIndex);
+                    y = event.getY(pointerIndex);
+                } catch (Exception e){
+                    return false;
+                }
 
                 if (!childRect.contains((int) x, (int) y)) {
                     return false;
@@ -370,8 +376,12 @@ public class CardContainer extends AdapterView<ListAdapter> {
                 break;
             case MotionEvent.ACTION_MOVE:
                 pointerIndex = event.findPointerIndex(mActivePointerId);
-                x = event.getX(pointerIndex);
-                y = event.getY(pointerIndex);
+                try {
+                    x = event.getX(pointerIndex);
+                    y = event.getY(pointerIndex);
+                } catch (Exception e){
+                    return false;
+                }
                 if (Math.abs(x - mLastTouchX) > mTouchSlop || Math.abs(y - mLastTouchY) > mTouchSlop) {
                     float[] points = new float[]{x - mTopCard.getLeft(), y - mTopCard.getTop()};
                     mTopCard.getMatrix().invert(mMatrix);

@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-    compile 'org.projectlombok:lombok:1.12.4'
+    annotationProcessor 'org.projectlombok:lombok:1.12.4'
 
     // Unit testing dependencies
     testCompile 'junit:junit:4.12'

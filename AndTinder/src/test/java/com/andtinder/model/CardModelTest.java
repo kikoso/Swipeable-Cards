@@ -20,8 +20,6 @@ package com.andtinder.model;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import static org.powermock.api.mockito.PowerMockito.mock;
-import junit.framework.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;

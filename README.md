@@ -3,7 +3,7 @@ Swipeable cards: Tinder-like cards library for Android
 
 Swipeable-cards is a native library for Android that provide a Tinder card like effect. A card can be constructed using an image and displayed with animation effects, dismiss-to-like and dismiss-to-unlike, and use different sorting mechanisms.
 
-The library is compatible for Android versions 3.0 (API Level 11) and upwards.
+The library is compatible for Android versions 4.4 (API Level 19) and upwards.
 
 A [library][1] and a [sample application][2] are provided with the code.
 
@@ -99,9 +99,10 @@ mCardContainer.setAdapter(adapter);
 
 Version history
 --------------------
-*  14.02.2015: Version 0.3: Fixed bugs with the cards locations and updated to the latest build tools
-*  4.06.2014: Published the version 0.2 with several improvements thanks to [Dr-Emann][5]
-* 13.05.2014: Published the first version 0.1
+*  28.01.2020: Version 0.4: Migration to AndroidX, libraries updated.
+*  14.02.2015: Version 0.3: Fixed bugs with the cards locations and updated to the latest build tools.
+*  4.06.2014: Published the version 0.2 with several improvements thanks to [Dr-Emann][5].
+* 13.05.2014: Published the first version 0.1.
 
 Next steps
 --------------------
@@ -123,7 +124,7 @@ Enrique López Mañas - <eenriquelopez@gmail.com>
 License
 -------
 
-    Copyright 2014 Enrique López Mañas
+    Copyright 2020 Enrique López Mañas
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

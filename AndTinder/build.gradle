@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply from: '../jacoco.gradle'
 
 ext.versionMajor = 0
-ext.versionMinor = 0
-ext.versionPatch = 4
+ext.versionMinor = 4
+ext.versionPatch = 0
 
 buildscript {
     repositories {

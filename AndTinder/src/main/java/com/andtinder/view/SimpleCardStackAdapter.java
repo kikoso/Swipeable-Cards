@@ -12,8 +12,8 @@ import com.andtinder.model.CardModel;
 
 public final class SimpleCardStackAdapter extends CardStackAdapter {
 
-	public SimpleCardStackAdapter(Context mContext) {
-		super(mContext);
+	public SimpleCardStackAdapter(Context context) {
+		super(context);
 	}
 
 	@Override

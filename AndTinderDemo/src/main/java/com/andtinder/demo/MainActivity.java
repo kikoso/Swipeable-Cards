@@ -18,7 +18,6 @@
 package com.andtinder.demo;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +32,7 @@ public class MainActivity extends Activity {
     /**
      * This variable is the container that will host our cards
      */
-	private CardContainer mCardContainer;
+	private CardContainer cardContainer;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mainlayout);
 
-		mCardContainer = (CardContainer) findViewById(R.id.layoutview);
+		cardContainer = (CardContainer) findViewById(R.id.layoutview);
 
 		Resources r = getResources();
 
@@ -99,6 +98,6 @@ public class MainActivity extends Activity {
 
         adapter.add(cardModel);
 
-		mCardContainer.setAdapter(adapter);
+		cardContainer.setAdapter(adapter);
 	}
 }

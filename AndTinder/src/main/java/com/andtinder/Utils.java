@@ -9,7 +9,7 @@
  * image and displayed with animation effects, dismiss-to-like
  * and dismiss-to-unlike, and use different sorting mechanisms.
  *
- * AndTinder is compatible with API Level 13 and upwards
+ * AndTinder is compatible with API Level 19 and upwards
  *
  * @copyright: Enrique López Mañas
  * @license: Apache License 2.0

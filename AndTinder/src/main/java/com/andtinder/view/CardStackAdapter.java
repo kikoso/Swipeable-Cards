@@ -12,25 +12,25 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public abstract class CardStackAdapter extends BaseCardStackAdapter {
-	private final Context mContext;
+	private final Context context;
 
 	/**
-	 * Lock used to modify the content of {@link #mData}. Any write operation
+	 * Lock used to modify the content of {@link #data}. Any write operation
 	 * performed on the deque should be synchronized on this lock.
 	 */
-	private final Object mLock = new Object();
-	private ArrayList<CardModel> mData;
+	private final Object lock = new Object();
+	private ArrayList<CardModel> data;
 
-    private boolean mShouldFillCardBackground = false;
+    private boolean shouldFillCardBackground = false;
 
     public CardStackAdapter(Context context) {
-		mContext = context;
-		mData = new ArrayList<CardModel>();
+		this.context = context;
+		data = new ArrayList<CardModel>();
 	}
 
 	public CardStackAdapter(Context context, Collection<? extends CardModel> items) {
-		mContext = context;
-		mData = new ArrayList<CardModel>(items);
+		this.context = context;
+		data = new ArrayList<CardModel>(items);
 	}
 
 	@Override
@@ -40,11 +40,11 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 		View cardView;
 		View convertedCardView;
 		if (wrapper == null) {
-			wrapper = new FrameLayout(mContext);
+			wrapper = new FrameLayout(context);
 			wrapper.setBackgroundResource(R.drawable.card_bg);
 			if (shouldFillCardBackground()) {
-				innerWrapper = new FrameLayout(mContext);
-				innerWrapper.setBackgroundColor(mContext.getResources().getColor(R.color.card_bg));
+				innerWrapper = new FrameLayout(context);
+				innerWrapper.setBackgroundColor(context.getResources().getColor(R.color.card_bg));
 				wrapper.addView(innerWrapper);
 			} else {
 				innerWrapper = wrapper;
@@ -71,24 +71,24 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 	protected abstract View getCardView(int position, CardModel model, View convertView, ViewGroup parent);
 
     public void setShouldFillCardBackground(boolean isShouldFillCardBackground) {
-        this.mShouldFillCardBackground = isShouldFillCardBackground;
+        this.shouldFillCardBackground = isShouldFillCardBackground;
     }
 
     public boolean shouldFillCardBackground() {
-        return mShouldFillCardBackground;
+        return shouldFillCardBackground;
     }
 
     public void add(CardModel item) {
-		synchronized (mLock) {
-			mData.add(item);
+		synchronized (lock) {
+			data.add(item);
 		}
 		notifyDataSetChanged();
 	}
 
 	public CardModel pop() {
 		CardModel model;
-		synchronized (mLock) {
-			model = mData.remove(mData.size() - 1);
+		synchronized (lock) {
+			model = data.remove(data.size() - 1);
 		}
 		notifyDataSetChanged();
 		return model;
@@ -100,14 +100,14 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 	}
 
 	public CardModel getCardModel(int position) {
-		synchronized (mLock) {
-			return mData.get(mData.size() - 1 - position);
+		synchronized (lock) {
+			return data.get(data.size() - 1 - position);
 		}
 	}
 
 	@Override
 	public int getCount() {
-		return mData.size();
+		return data.size();
 	}
 
 	@Override
@@ -116,6 +116,6 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 	}
 
 	public Context getContext() {
-		return mContext;
+		return context;
 	}
 }

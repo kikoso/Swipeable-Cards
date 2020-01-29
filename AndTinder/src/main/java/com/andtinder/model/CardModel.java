@@ -17,7 +17,6 @@
 
 package com.andtinder.model;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -30,9 +29,9 @@ public class CardModel {
 	private Drawable cardLikeImageDrawable;
 	private Drawable cardDislikeImageDrawable;
 
-    private OnCardDismissedListener mOnCardDismissedListener = null;
+    private OnCardDismissedListener onCardDismissedListener = null;
 
-    private OnClickListener mOnClickListener = null;
+    private OnClickListener onClickListener = null;
 
     public interface OnCardDismissedListener {
         void onLike();
@@ -100,19 +99,19 @@ public class CardModel {
 	}
 
     public void setOnCardDismissedListener( OnCardDismissedListener listener ) {
-        this.mOnCardDismissedListener = listener;
+        this.onCardDismissedListener = listener;
     }
 
     public OnCardDismissedListener getOnCardDismissedListener() {
-       return this.mOnCardDismissedListener;
+       return this.onCardDismissedListener;
     }
 
 
     public void setOnClickListener( OnClickListener listener ) {
-        this.mOnClickListener = listener;
+        this.onClickListener = listener;
     }
 
     public OnClickListener getOnClickListener() {
-        return this.mOnClickListener;
+        return this.onClickListener;
     }
 }

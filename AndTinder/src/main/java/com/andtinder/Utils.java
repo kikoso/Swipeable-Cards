@@ -1,5 +1,5 @@
 /**
- * AndTinder v0.1 for Android
+ * AndTinder v0.4 for Android
  *
  * @Author: Enrique López Mañas <eenriquelopez@gmail.com>
  * http://www.lopez-manas.com
